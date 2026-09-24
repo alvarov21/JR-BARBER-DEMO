@@ -103,8 +103,17 @@
 
         </header>
 
+        <!-- Coming Soon Content -->
+        <div id="coming-soon" class="flex-1 overflow-y-auto p-8 relative z-0 hidden">
+            <div class="flex flex-col items-center justify-center h-full text-center opacity-50 pt-20">
+                <i class="fa-solid fa-person-digging text-6xl mb-6 text-white"></i>
+                <h2 id="coming-soon-title" class="text-2xl font-display font-bold text-white mb-2 uppercase tracking-wider">PRÓXIMAMENTE</h2>
+                <p class="text-gray-400 max-w-md mx-auto">Este módulo estará disponible en la versión final del panel, una vez conectado con la base de datos real.</p>
+            </div>
+        </div>
+
         <!-- Dashboard Content -->
-        <div class="flex-1 overflow-y-auto p-8 relative z-0">
+        <div id="main-content" class="flex-1 overflow-y-auto p-8 relative z-0">
             <div class="max-w-6xl mx-auto space-y-8">
                 
                 <!-- Stats Grid -->
@@ -347,6 +356,39 @@
                 // Insertar al principio y quitar animación tras 1 seg
                 tableBody.insertBefore(newRow, tableBody.firstChild);
                 setTimeout(() => newRow.classList.remove('animate-pulse'), 1000);
+            });
+
+            // Navegación Sidebar
+            const navLinks = document.querySelectorAll('aside nav a');
+            const mainContent = document.getElementById('main-content');
+            const comingSoon = document.getElementById('coming-soon');
+            const headerTitle = document.querySelector('header h1');
+            
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    
+                    // Resetear estilos de todos los links
+                    navLinks.forEach(l => {
+                        l.className = 'flex items-center gap-3 px-4 py-3 text-gray-400 hover:text-white hover:bg-white/5 rounded-sm transition-colors';
+                    });
+                    
+                    // Aplicar estilo activo al clickeado (sin perder el span rojo de notificaciones si lo tiene)
+                    link.className = 'flex items-center gap-3 px-4 py-3 bg-white/10 text-white rounded-sm border border-white/10 transition-colors';
+                    
+                    // Obtener nombre de la sección (el primer span)
+                    const sectionName = link.querySelector('span').innerText.trim().toUpperCase();
+                    
+                    if (sectionName === 'DASHBOARD' || sectionName === 'CITAS') {
+                        mainContent.classList.remove('hidden');
+                        comingSoon.classList.add('hidden');
+                        headerTitle.innerText = sectionName === 'DASHBOARD' ? 'RESUMEN DE HOY' : 'GESTIÓN DE CITAS';
+                    } else {
+                        mainContent.classList.add('hidden');
+                        comingSoon.classList.remove('hidden');
+                        headerTitle.innerText = sectionName;
+                    }
+                });
             });
         });
     </script>
