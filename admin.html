@@ -110,7 +110,7 @@
         
 
         <!-- Dashboard Content -->
-        <div id="main-content" class="flex-1 overflow-y-auto p-8 relative z-0">
+        <div id="main-content" class="flex-1 overflow-y-auto p-8 relative z-0 transition-opacity duration-300 opacity-100">
             <div class="max-w-6xl mx-auto space-y-8">
                 
                 <!-- Stats Grid -->
@@ -266,7 +266,7 @@
         </div>
 
         <!-- Citas Pendientes Content -->
-        <div id="citas-content" class="flex-1 overflow-y-auto p-8 relative z-0 hidden">
+        <div id="citas-content" class="flex-1 overflow-y-auto p-8 relative z-0 hidden transition-opacity duration-300 opacity-0">
             <div class="max-w-6xl mx-auto space-y-8">
                 <div class="glass-panel border border-white/10 flex flex-col">
                     <div class="p-6 border-b border-white/5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
@@ -305,7 +305,7 @@
         </div>
 
         <!-- Clientes Content -->
-        <div id="clientes-content" class="flex-1 overflow-y-auto p-8 relative z-0 hidden">
+        <div id="clientes-content" class="flex-1 overflow-y-auto p-8 relative z-0 hidden transition-opacity duration-300 opacity-0">
             <div class="max-w-6xl mx-auto space-y-8">
                 <div class="glass-panel border border-white/10 flex flex-col">
                     <div class="p-6 border-b border-white/5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
@@ -347,7 +347,7 @@
         </div>
 
         <!-- Calendario Content -->
-        <div id="calendario-content" class="flex-1 overflow-y-auto p-8 relative z-0 hidden">
+        <div id="calendario-content" class="flex-1 overflow-y-auto p-8 relative z-0 hidden transition-opacity duration-300 opacity-0">
             <div class="max-w-6xl mx-auto space-y-8">
                 <div class="glass-panel border border-white/10 flex flex-col">
                     <div class="p-6 border-b border-white/5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
@@ -391,6 +391,18 @@
                 </div>
             </div>
         </div>
+
+
+    <!-- Toast Notification -->
+    <div id="toast" class="fixed bottom-4 right-4 transform translate-y-[150%] opacity-0 transition-all duration-300 z-50">
+        <div class="glass-panel border-l-4 border-green-500 p-4 flex items-center gap-3 shadow-[0_10px_40px_rgba(0,0,0,0.5)]">
+            <i id="toast-icon" class="fa-solid fa-circle-check text-green-500 text-xl"></i>
+            <div>
+                <h4 class="text-white font-bold text-sm uppercase tracking-wider" id="toast-title">¡Acción Completada!</h4>
+                <p class="text-gray-400 text-xs" id="toast-msg">El sistema se ha actualizado.</p>
+            </div>
+        </div>
+    </div>
 
     </main>
 
@@ -436,15 +448,38 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             // Manejar clics en los botones de la tabla
-            const tableBody = document.querySelector('tbody');
             
-            tableBody.addEventListener('click', (e) => {
-                const btn = e.target.closest('button');
+            function showToast(title, msg, isError = false) {
+                const toast = document.getElementById('toast');
+                document.getElementById('toast-title').innerText = title;
+                document.getElementById('toast-msg').innerText = msg;
+                const icon = document.getElementById('toast-icon');
+                const panel = toast.querySelector('.glass-panel');
+                
+                if (isError) {
+                    icon.className = 'fa-solid fa-circle-xmark text-red-500 text-xl';
+                    panel.className = 'glass-panel border-l-4 border-red-500 p-4 flex items-center gap-3 shadow-[0_10px_40px_rgba(0,0,0,0.5)]';
+                } else {
+                    icon.className = 'fa-solid fa-circle-check text-green-500 text-xl';
+                    panel.className = 'glass-panel border-l-4 border-green-500 p-4 flex items-center gap-3 shadow-[0_10px_40px_rgba(0,0,0,0.5)]';
+                }
+
+                toast.classList.remove('translate-y-[150%]', 'opacity-0');
+                setTimeout(() => {
+                    toast.classList.add('translate-y-[150%]', 'opacity-0');
+                }, 3000);
+            }
+
+            document.addEventListener('click', (e) => {
+                const btn = e.target.closest('button[title="Marcar completado"], button[title="Cancelar"]');
                 if (!btn) return;
                 
                 const tr = btn.closest('tr');
+                if (!tr) return;
+                
                 const statusTd = tr.querySelector('td:nth-child(4)');
                 const actionsTd = tr.querySelector('td:nth-child(5)');
+                if (!statusTd || !actionsTd) return;
                 
                 if (btn.title === 'Marcar completado') {
                     tr.classList.add('opacity-50');
@@ -454,6 +489,7 @@
                     });
                     statusTd.innerHTML = '<span class="px-2.5 py-1 bg-white/10 text-white/50 border border-white/10 text-xs font-semibold uppercase tracking-wider">Completado</span>';
                     actionsTd.innerHTML = '-';
+                    showToast('¡Cita Confirmada!', 'Se ha añadido al calendario automáticamente.');
                     
                 } else if (btn.title === 'Cancelar') {
                     tr.classList.add('opacity-50');
@@ -463,8 +499,10 @@
                     });
                     statusTd.innerHTML = '<span class="px-2.5 py-1 bg-red-500/10 text-red-500 border border-red-500/20 text-xs font-semibold uppercase tracking-wider">Cancelada</span>';
                     actionsTd.innerHTML = '-';
+                    showToast('Cita Cancelada', 'Se ha notificado al cliente de la cancelación.', true);
                 }
             });
+
 
             // Modal Nueva Cita
             const modal = document.getElementById('new-cita-modal');
@@ -526,7 +564,7 @@
                     </td>
                 `;
                 
-                tableBody.insertBefore(newRow, tableBody.firstChild);
+                document.querySelector("#main-content tbody").insertBefore(newRow, document.querySelector("#main-content tbody").firstChild);
                 
                 // Limpiar form y cerrar modal
                 form.reset();
@@ -557,14 +595,28 @@
                     
                     const sectionName = link.querySelector('span').innerText.trim().toUpperCase();
                     
-                    // Hide all
-                    Object.values(sections).forEach(sec => {
-                        if (sec) sec.classList.add('hidden');
-                    });
+                    // Fade transition
+                    const currentSec = Object.values(sections).find(sec => sec && !sec.classList.contains('hidden'));
+                    const targetSec = sections[sectionName];
                     
-                    // Show target
-                    if (sections[sectionName]) {
-                        sections[sectionName].classList.remove('hidden');
+                    if (currentSec && currentSec !== targetSec) {
+                        currentSec.classList.remove('opacity-100');
+                        currentSec.classList.add('opacity-0');
+                        setTimeout(() => {
+                            currentSec.classList.add('hidden');
+                            if (targetSec) {
+                                targetSec.classList.remove('hidden');
+                                // Force reflow
+                                void targetSec.offsetWidth;
+                                targetSec.classList.remove('opacity-0');
+                                targetSec.classList.add('opacity-100');
+                            }
+                        }, 200);
+                    } else if (!currentSec && targetSec) {
+                        targetSec.classList.remove('hidden');
+                        void targetSec.offsetWidth;
+                        targetSec.classList.remove('opacity-0');
+                        targetSec.classList.add('opacity-100');
                     }
                     
                     if (sectionName === 'DASHBOARD') headerTitle.innerText = 'RESUMEN DE HOY';
