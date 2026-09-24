@@ -269,6 +269,45 @@
         </div>
     </main>
 
+    <!-- Modal Nueva Cita -->
+    <div id="new-cita-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm hidden">
+        <div class="glass-panel w-full max-w-md p-8 border border-white/10 relative shadow-[0_0_50px_rgba(0,0,0,0.5)]">
+            <button id="close-modal-btn" class="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors p-2">
+                <i class="fa-solid fa-xmark text-xl"></i>
+            </button>
+            <h2 class="text-xl font-display font-bold text-white mb-6 uppercase tracking-wider">Añadir Cita Manual</h2>
+            
+            <form id="new-cita-form" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-semibold text-gray-400 uppercase tracking-widest mb-2">Cliente</label>
+                    <input type="text" id="modal-cliente" required class="w-full bg-black/50 border border-white/10 p-3 text-white placeholder-gray-500 focus:outline-none focus:border-white transition-colors" placeholder="Nombre completo">
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-400 uppercase tracking-widest mb-2">Hora</label>
+                        <input type="time" id="modal-hora" required class="w-full bg-black/50 border border-white/10 p-3 text-white focus:outline-none focus:border-white transition-colors" value="12:00">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-400 uppercase tracking-widest mb-2">Teléfono</label>
+                        <input type="tel" id="modal-tel" required class="w-full bg-black/50 border border-white/10 p-3 text-white placeholder-gray-500 focus:outline-none focus:border-white transition-colors" placeholder="600 11 22 33">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-gray-400 uppercase tracking-widest mb-2">Servicio</label>
+                    <select id="modal-servicio" class="w-full bg-black/50 border border-white/10 p-3 text-white focus:outline-none focus:border-white transition-colors appearance-none cursor-pointer">
+                        <option value="Corte Clásico / Fade|30 min • 15€">Corte Clásico / Fade (15€)</option>
+                        <option value="Arreglo de Barba|15 min • 10€">Arreglo de Barba (10€)</option>
+                        <option value="Corte + Barba (Combo VIP)|50 min • 25€">Corte + Barba VIP (25€)</option>
+                    </select>
+                </div>
+                
+                <button type="submit" class="w-full bg-white text-black px-6 py-4 mt-6 font-bold uppercase tracking-wider hover:bg-gray-200 transition-colors flex justify-center items-center gap-2">
+                    <i class="fa-solid fa-calendar-plus"></i> Guardar Cita
+                </button>
+            </form>
+        </div>
+    </div>
+
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             // Manejar clics en los botones de la tabla
@@ -283,50 +322,71 @@
                 const actionsTd = tr.querySelector('td:nth-child(5)');
                 
                 if (btn.title === 'Marcar completado') {
-                    // Cambiar a estado Completado
                     tr.classList.add('opacity-50');
-                    
-                    // Cambiar estilos de texto a gris
                     tr.querySelectorAll('.text-white').forEach(el => {
                         el.classList.remove('text-white');
                         el.classList.add('text-gray-500');
                     });
-                    
                     statusTd.innerHTML = '<span class="px-2.5 py-1 bg-white/10 text-white/50 border border-white/10 text-xs font-semibold uppercase tracking-wider">Completado</span>';
                     actionsTd.innerHTML = '-';
                     
                 } else if (btn.title === 'Cancelar') {
-                    // Cambiar a estado Cancelado
                     tr.classList.add('opacity-50');
-                    
-                    // Cambiar estilos de texto a gris
                     tr.querySelectorAll('.text-white').forEach(el => {
                         el.classList.remove('text-white');
                         el.classList.add('text-gray-500');
                     });
-                    
                     statusTd.innerHTML = '<span class="px-2.5 py-1 bg-red-500/10 text-red-500 border border-red-500/20 text-xs font-semibold uppercase tracking-wider">Cancelada</span>';
                     actionsTd.innerHTML = '-';
                 }
             });
 
-            // Botón Nueva Cita
-            const newCitaBtn = document.querySelector('.fa-plus').closest('button');
-            newCitaBtn.addEventListener('click', () => {
+            // Modal Nueva Cita
+            const modal = document.getElementById('new-cita-modal');
+            const openModalBtn = document.querySelector('.fa-plus').closest('button');
+            const closeModalBtn = document.getElementById('close-modal-btn');
+            const form = document.getElementById('new-cita-form');
+
+            openModalBtn.addEventListener('click', () => {
+                modal.classList.remove('hidden');
+                document.getElementById('modal-cliente').focus();
+            });
+
+            closeModalBtn.addEventListener('click', () => {
+                modal.classList.add('hidden');
+            });
+
+            // Cerrar al hacer click fuera del modal
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) modal.classList.add('hidden');
+            });
+
+            // Guardar nueva cita
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                
+                const cliente = document.getElementById('modal-cliente').value;
+                const hora = document.getElementById('modal-hora').value;
+                const tel = document.getElementById('modal-tel').value;
+                
+                // El select tiene value="NombreServicio|DuracionPrecio"
+                const servicioRaw = document.getElementById('modal-servicio').value;
+                const [servicioNombre, servicioDetalle] = servicioRaw.split('|');
+
                 const newRow = document.createElement('tr');
                 newRow.className = 'hover:bg-white/[0.02] transition-colors group animate-pulse';
                 
                 newRow.innerHTML = `
                     <td class="px-6 py-4 whitespace-nowrap">
-                        <span class="font-display font-bold text-white text-base">20:00</span>
+                        <span class="font-display font-bold text-white text-base">${hora}</span>
                     </td>
                     <td class="px-6 py-4 font-medium text-white">
-                        Nuevo Cliente
-                        <div class="text-xs text-gray-500 font-normal">600 00 00 00</div>
+                        ${cliente}
+                        <div class="text-xs text-gray-500 font-normal">${tel}</div>
                     </td>
                     <td class="px-6 py-4">
-                        Corte de Pelo
-                        <div class="text-xs font-medium text-gray-500">30 min • 15€</div>
+                        ${servicioNombre}
+                        <div class="text-xs font-medium text-gray-500">${servicioDetalle}</div>
                     </td>
                     <td class="px-6 py-4">
                         <span class="px-2.5 py-1 bg-yellow-500/10 text-yellow-500 border border-yellow-500/20 text-xs font-semibold uppercase tracking-wider">Pendiente</span>
@@ -341,10 +401,15 @@
                     </td>
                 `;
                 
-                // Insertar al principio y quitar animación tras 1 seg
                 tableBody.insertBefore(newRow, tableBody.firstChild);
+                
+                // Limpiar form y cerrar modal
+                form.reset();
+                modal.classList.add('hidden');
+                
                 setTimeout(() => newRow.classList.remove('animate-pulse'), 1000);
             });
+
 
             // Navegación Sidebar
             const navLinks = document.querySelectorAll('aside nav a');
