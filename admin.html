@@ -70,7 +70,7 @@
             <a href="#" class="flex items-center gap-3 px-4 py-3 text-gray-400 hover:text-white hover:bg-white/5 rounded-sm transition-colors">
                 <i class="fa-regular fa-clock w-5"></i>
                 <span class="text-sm font-medium tracking-wide uppercase">Citas</span>
-                <span class="ml-auto bg-yellow-500 text-black text-[10px] font-bold px-2 py-0.5 rounded-full">3</span>
+                <span class="ml-auto bg-yellow-500 text-black text-[10px] font-bold px-2 py-0.5 rounded-full">2</span>
             </a>
             <a href="#" class="flex items-center gap-3 px-4 py-3 text-gray-400 hover:text-white hover:bg-white/5 rounded-sm transition-colors">
                 <i class="fa-regular fa-calendar-days w-5"></i>
@@ -134,7 +134,7 @@
                         </div>
                         <h3 class="text-xs font-semibold tracking-widest uppercase text-yellow-500/80 mb-2">Citas Pendientes</h3>
                         <div class="flex items-end gap-3">
-                            <span class="text-4xl font-display font-bold text-white">3</span>
+                            <span class="text-4xl font-display font-bold text-white">2</span>
                             <span class="text-sm font-medium text-gray-400 mb-1">Para aceptar o rechazar</span>
                         </div>
                     </div>
@@ -152,126 +152,6 @@
                         </button>
                     </div>
                     
-                    <div class="overflow-x-auto">
-                        <table class="w-full text-left text-sm text-gray-400">
-                            <thead class="text-xs uppercase bg-white/5 text-gray-500 font-semibold tracking-widest">
-                                <tr>
-                                    <th scope="col" class="px-6 py-4">Hora</th>
-                                    <th scope="col" class="px-6 py-4">Cliente</th>
-                                    <th scope="col" class="px-6 py-4">Servicio</th>
-                                    <th scope="col" class="px-6 py-4">Estado</th>
-                                    <th scope="col" class="px-6 py-4 text-right">Acciones</th>
-                                </tr>
-                            </thead>
-                            <tbody class="divide-y divide-white/5">
-                                <tr class="hover:bg-white/[0.02] transition-colors group">
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <span class="font-display font-bold text-white text-base">17:00</span>
-                                    </td>
-                                    <td class="px-6 py-4 font-medium text-white">
-                                        Alejandro Ruiz
-                                        <div class="text-xs text-gray-500 font-normal">612 34 56 78</div>
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        Corte Clásico / Fade
-                                        <div class="text-xs font-medium text-gray-500">30 min • 15€</div>
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        <span class="px-2.5 py-1 bg-yellow-500/10 text-yellow-500 border border-yellow-500/20 text-xs font-semibold uppercase tracking-wider">Pendiente</span>
-                                    </td>
-                                    <td class="px-6 py-4 text-right space-x-2">
-                                        <button class="text-gray-400 hover:text-green-500 transition-colors p-2" title="Marcar completado">
-                                            <i class="fa-solid fa-check"></i>
-                                        </button>
-                                        <button class="text-gray-400 hover:text-red-500 transition-colors p-2" title="Cancelar">
-                                            <i class="fa-solid fa-xmark"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-
-                                <tr class="hover:bg-white/[0.02] transition-colors group">
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <span class="font-display font-bold text-white text-base">17:30</span>
-                                    </td>
-                                    <td class="px-6 py-4 font-medium text-white">
-                                        David Ibáñez
-                                        <div class="text-xs text-gray-500 font-normal">699 11 22 33</div>
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        Corte + Barba (Combo VIP)
-                                        <div class="text-xs font-medium text-gray-500">50 min • 25€</div>
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        <span class="px-2.5 py-1 bg-green-500/10 text-green-500 border border-green-500/20 text-xs font-semibold uppercase tracking-wider">Confirmada</span>
-                                    </td>
-                                    <td class="px-6 py-4 text-right space-x-2">
-                                        <button class="text-gray-400 hover:text-blue-500 transition-colors p-2" title="Finalizar cita">
-                                            <i class="fa-solid fa-check-double"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-
-                                <tr class="hover:bg-white/[0.02] transition-colors group">
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <span class="font-display font-bold text-white text-base">18:30</span>
-                                    </td>
-                                    <td class="px-6 py-4 font-medium text-white">
-                                        Pablo Torres
-                                        <div class="text-xs text-gray-500 font-normal">600 44 55 66</div>
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        Arreglo de Barba
-                                        <div class="text-xs font-medium text-gray-500">15 min • 10€</div>
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        <span class="px-2.5 py-1 bg-yellow-500/10 text-yellow-500 border border-yellow-500/20 text-xs font-semibold uppercase tracking-wider">Pendiente</span>
-                                    </td>
-                                    <td class="px-6 py-4 text-right space-x-2">
-                                        <button class="text-gray-400 hover:text-green-500 transition-colors p-2" title="Marcar completado">
-                                            <i class="fa-solid fa-check"></i>
-                                        </button>
-                                        <button class="text-gray-400 hover:text-red-500 transition-colors p-2" title="Cancelar">
-                                            <i class="fa-solid fa-xmark"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                                
-                                <tr class="opacity-50">
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <span class="font-display font-bold text-gray-500 text-base">13:30</span>
-                                    </td>
-                                    <td class="px-6 py-4 font-medium text-gray-500">
-                                        Sergy
-                                        <div class="text-xs font-normal">677 88 99 00</div>
-                                    </td>
-                                    <td class="px-6 py-4 text-gray-500">
-                                        Corte Clásico
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        <span class="px-2.5 py-1 bg-white/10 text-white/50 border border-white/10 text-xs font-semibold uppercase tracking-wider">Completado</span>
-                                    </td>
-                                    <td class="px-6 py-4 text-right">
-                                        -
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-
-        <!-- Citas Pendientes Content -->
-        <div id="citas-content" class="flex-1 overflow-y-auto p-8 relative z-0 hidden transition-opacity duration-300 opacity-0">
-            <div class="max-w-6xl mx-auto space-y-8">
-                <div class="glass-panel border border-white/10 flex flex-col">
-                    <div class="p-6 border-b border-white/5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                        <div>
-                            <h2 class="text-lg font-display font-bold text-yellow-500 tracking-wider">CITAS PENDIENTES</h2>
-                            <p class="text-sm text-gray-500">Reservas que requieren tu confirmación manual.</p>
-                        </div>
-                    </div>
                     <div class="overflow-x-auto">
                         <table class="w-full text-left text-sm text-gray-400">
                             <thead class="text-xs uppercase bg-white/5 text-gray-500 font-semibold tracking-widest">
@@ -303,6 +183,52 @@
                                         <button class="text-gray-400 hover:text-green-500 transition-colors p-2" title="Marcar completado"><i class="fa-solid fa-check"></i></button>
                                         <button class="text-gray-400 hover:text-red-500 transition-colors p-2" title="Cancelar"><i class="fa-solid fa-xmark"></i></button>
                                     </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Citas Pendientes Content -->
+        <div id="citas-content" class="flex-1 overflow-y-auto p-8 relative z-0 hidden transition-opacity duration-300 opacity-0">
+            <div class="max-w-6xl mx-auto space-y-8">
+                <div class="glass-panel border border-white/10 flex flex-col">
+                    <div class="p-6 border-b border-white/5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                        <div>
+                            <h2 class="text-lg font-display font-bold text-green-500 tracking-wider">CITAS CONFIRMADAS</h2>
+                            <p class="text-sm text-gray-500">Listado general de citas aceptadas.</p>
+                        </div>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left text-sm text-gray-400">
+                            <thead class="text-xs uppercase bg-white/5 text-gray-500 font-semibold tracking-widest">
+                                <tr>
+                                    <th scope="col" class="px-6 py-4">Hora</th>
+                                    <th scope="col" class="px-6 py-4">Cliente</th>
+                                    <th scope="col" class="px-6 py-4">Servicio</th>
+                                    <th scope="col" class="px-6 py-4">Estado</th>
+                                    <th scope="col" class="px-6 py-4 text-right">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-white/5">
+                                <tr class="hover:bg-white/[0.02] transition-colors group">
+                                    <td class="px-6 py-4 whitespace-nowrap"><span class="font-display font-bold text-white text-base">17:30</span></td>
+                                    <td class="px-6 py-4 font-medium text-white">David Ibáñez<div class="text-xs text-gray-500 font-normal">699 11 22 33</div></td>
+                                    <td class="px-6 py-4">Corte + Barba (Combo VIP)<div class="text-xs font-medium text-gray-500">50 min • 25€</div></td>
+                                    <td class="px-6 py-4"><span class="px-2.5 py-1 bg-green-500/10 text-green-500 border border-green-500/20 text-xs font-semibold uppercase tracking-wider">Confirmada</span></td>
+                                    <td class="px-6 py-4 text-right space-x-2">
+                                        <button class="text-gray-400 hover:text-blue-500 transition-colors p-2" title="Finalizar cita"><i class="fa-solid fa-check-double"></i></button>
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-white/[0.02] transition-colors group opacity-50">
+                                    <td class="px-6 py-4 whitespace-nowrap"><span class="font-display font-bold text-gray-500 text-base">13:30</span></td>
+                                    <td class="px-6 py-4 font-medium text-gray-500">Sergy<div class="text-xs text-gray-500 font-normal">677 88 99 00</div></td>
+                                    <td class="px-6 py-4 text-gray-500">Corte Clásico<div class="text-xs font-medium text-gray-500">30 min • 15€</div></td>
+                                    <td class="px-6 py-4"><span class="px-2.5 py-1 bg-white/10 text-white/50 border border-white/10 text-xs font-semibold uppercase tracking-wider">Completado</span></td>
+                                    <td class="px-6 py-4 text-right space-x-2">-</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -626,7 +552,7 @@
                     }
                     
                     if (sectionName === 'DASHBOARD') headerTitle.innerText = 'RESUMEN DE HOY';
-                    else if (sectionName === 'CITAS') headerTitle.innerText = 'CITAS PENDIENTES';
+                    else if (sectionName === 'CITAS') headerTitle.innerText = 'CITAS CONFIRMADAS';
                     else if (sectionName === 'CLIENTES') headerTitle.innerText = 'CLIENTES CONFIRMADOS';
                     else if (sectionName === 'CALENDARIO') headerTitle.innerText = 'CALENDARIO (HOY)';
                 });
