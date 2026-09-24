@@ -272,5 +272,83 @@
         </div>
     </main>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Manejar clics en los botones de la tabla
+            const tableBody = document.querySelector('tbody');
+            
+            tableBody.addEventListener('click', (e) => {
+                const btn = e.target.closest('button');
+                if (!btn) return;
+                
+                const tr = btn.closest('tr');
+                const statusTd = tr.querySelector('td:nth-child(4)');
+                const actionsTd = tr.querySelector('td:nth-child(5)');
+                
+                if (btn.title === 'Marcar completado') {
+                    // Cambiar a estado Completado
+                    tr.classList.add('opacity-50');
+                    
+                    // Cambiar estilos de texto a gris
+                    tr.querySelectorAll('.text-white').forEach(el => {
+                        el.classList.remove('text-white');
+                        el.classList.add('text-gray-500');
+                    });
+                    
+                    statusTd.innerHTML = '<span class="px-2.5 py-1 bg-white/10 text-white/50 border border-white/10 text-xs font-semibold uppercase tracking-wider">Completado</span>';
+                    actionsTd.innerHTML = '-';
+                    
+                } else if (btn.title === 'Cancelar') {
+                    // Cambiar a estado Cancelado
+                    tr.classList.add('opacity-50');
+                    
+                    // Cambiar estilos de texto a gris
+                    tr.querySelectorAll('.text-white').forEach(el => {
+                        el.classList.remove('text-white');
+                        el.classList.add('text-gray-500');
+                    });
+                    
+                    statusTd.innerHTML = '<span class="px-2.5 py-1 bg-red-500/10 text-red-500 border border-red-500/20 text-xs font-semibold uppercase tracking-wider">Cancelada</span>';
+                    actionsTd.innerHTML = '-';
+                }
+            });
+
+            // Botón Nueva Cita
+            const newCitaBtn = document.querySelector('.fa-plus').closest('button');
+            newCitaBtn.addEventListener('click', () => {
+                const newRow = document.createElement('tr');
+                newRow.className = 'hover:bg-white/[0.02] transition-colors group animate-pulse';
+                
+                newRow.innerHTML = `
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        <span class="font-display font-bold text-white text-base">20:00</span>
+                    </td>
+                    <td class="px-6 py-4 font-medium text-white">
+                        Nuevo Cliente
+                        <div class="text-xs text-gray-500 font-normal">600 00 00 00</div>
+                    </td>
+                    <td class="px-6 py-4">
+                        Corte de Pelo
+                        <div class="text-xs font-medium text-gray-500">30 min • 15€</div>
+                    </td>
+                    <td class="px-6 py-4">
+                        <span class="px-2.5 py-1 bg-yellow-500/10 text-yellow-500 border border-yellow-500/20 text-xs font-semibold uppercase tracking-wider">Pendiente</span>
+                    </td>
+                    <td class="px-6 py-4 text-right space-x-2">
+                        <button class="text-gray-400 hover:text-green-500 transition-colors p-2" title="Marcar completado">
+                            <i class="fa-solid fa-check"></i>
+                        </button>
+                        <button class="text-gray-400 hover:text-red-500 transition-colors p-2" title="Cancelar">
+                            <i class="fa-solid fa-xmark"></i>
+                        </button>
+                    </td>
+                `;
+                
+                // Insertar al principio y quitar animación tras 1 seg
+                tableBody.insertBefore(newRow, tableBody.firstChild);
+                setTimeout(() => newRow.classList.remove('animate-pulse'), 1000);
+            });
+        });
+    </script>
 </body>
 </html>
