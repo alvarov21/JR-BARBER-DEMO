@@ -63,21 +63,17 @@
                 <span class="text-sm font-medium tracking-wide uppercase">Dashboard</span>
             </a>
             <a href="#" class="flex items-center gap-3 px-4 py-3 text-gray-400 hover:text-white hover:bg-white/5 rounded-sm transition-colors">
-                <i class="fa-regular fa-calendar-check w-5"></i>
+                <i class="fa-regular fa-clock w-5"></i>
                 <span class="text-sm font-medium tracking-wide uppercase">Citas</span>
-                <span class="ml-auto bg-red-600 text-white text-[10px] font-bold px-2 py-0.5 rounded-full">3</span>
+                <span class="ml-auto bg-yellow-500 text-black text-[10px] font-bold px-2 py-0.5 rounded-full">3</span>
+            </a>
+            <a href="#" class="flex items-center gap-3 px-4 py-3 text-gray-400 hover:text-white hover:bg-white/5 rounded-sm transition-colors">
+                <i class="fa-regular fa-calendar-days w-5"></i>
+                <span class="text-sm font-medium tracking-wide uppercase">Calendario</span>
             </a>
             <a href="#" class="flex items-center gap-3 px-4 py-3 text-gray-400 hover:text-white hover:bg-white/5 rounded-sm transition-colors">
                 <i class="fa-solid fa-users w-5"></i>
                 <span class="text-sm font-medium tracking-wide uppercase">Clientes</span>
-            </a>
-            <a href="#" class="flex items-center gap-3 px-4 py-3 text-gray-400 hover:text-white hover:bg-white/5 rounded-sm transition-colors">
-                <i class="fa-solid fa-scissors w-5"></i>
-                <span class="text-sm font-medium tracking-wide uppercase">Servicios</span>
-            </a>
-            <a href="#" class="flex items-center gap-3 px-4 py-3 text-gray-400 hover:text-white hover:bg-white/5 rounded-sm transition-colors">
-                <i class="fa-solid fa-gear w-5"></i>
-                <span class="text-sm font-medium tracking-wide uppercase">Ajustes</span>
             </a>
         </nav>
 
@@ -103,14 +99,7 @@
 
         </header>
 
-        <!-- Coming Soon Content -->
-        <div id="coming-soon" class="flex-1 overflow-y-auto p-8 relative z-0 hidden">
-            <div class="flex flex-col items-center justify-center h-full text-center opacity-50 pt-20">
-                <i class="fa-solid fa-person-digging text-6xl mb-6 text-white"></i>
-                <h2 id="coming-soon-title" class="text-2xl font-display font-bold text-white mb-2 uppercase tracking-wider">PRÓXIMAMENTE</h2>
-                <p class="text-gray-400 max-w-md mx-auto">Este módulo estará disponible en la versión final del panel, una vez conectado con la base de datos real.</p>
-            </div>
-        </div>
+        
 
         <!-- Dashboard Content -->
         <div id="main-content" class="flex-1 overflow-y-auto p-8 relative z-0">
@@ -267,6 +256,134 @@
 
             </div>
         </div>
+
+        <!-- Citas Pendientes Content -->
+        <div id="citas-content" class="flex-1 overflow-y-auto p-8 relative z-0 hidden">
+            <div class="max-w-6xl mx-auto space-y-8">
+                <div class="glass-panel border border-white/10 flex flex-col">
+                    <div class="p-6 border-b border-white/5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                        <div>
+                            <h2 class="text-lg font-display font-bold text-yellow-500 tracking-wider">CITAS PENDIENTES</h2>
+                            <p class="text-sm text-gray-500">Reservas que requieren tu confirmación manual.</p>
+                        </div>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left text-sm text-gray-400">
+                            <thead class="text-xs uppercase bg-white/5 text-gray-500 font-semibold tracking-widest">
+                                <tr>
+                                    <th scope="col" class="px-6 py-4">Hora</th>
+                                    <th scope="col" class="px-6 py-4">Cliente</th>
+                                    <th scope="col" class="px-6 py-4">Servicio</th>
+                                    <th scope="col" class="px-6 py-4">Estado</th>
+                                    <th scope="col" class="px-6 py-4 text-right">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-white/5">
+                                <tr class="hover:bg-white/[0.02] transition-colors group">
+                                    <td class="px-6 py-4 whitespace-nowrap"><span class="font-display font-bold text-white text-base">17:00</span></td>
+                                    <td class="px-6 py-4 font-medium text-white">Alejandro Ruiz<div class="text-xs text-gray-500 font-normal">612 34 56 78</div></td>
+                                    <td class="px-6 py-4">Corte Clásico / Fade<div class="text-xs font-medium text-gray-500">30 min • 15€</div></td>
+                                    <td class="px-6 py-4"><span class="px-2.5 py-1 bg-yellow-500/10 text-yellow-500 border border-yellow-500/20 text-xs font-semibold uppercase tracking-wider">Pendiente</span></td>
+                                    <td class="px-6 py-4 text-right space-x-2">
+                                        <button class="text-gray-400 hover:text-green-500 transition-colors p-2" title="Marcar completado"><i class="fa-solid fa-check"></i></button>
+                                        <button class="text-gray-400 hover:text-red-500 transition-colors p-2" title="Cancelar"><i class="fa-solid fa-xmark"></i></button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Clientes Content -->
+        <div id="clientes-content" class="flex-1 overflow-y-auto p-8 relative z-0 hidden">
+            <div class="max-w-6xl mx-auto space-y-8">
+                <div class="glass-panel border border-white/10 flex flex-col">
+                    <div class="p-6 border-b border-white/5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                        <div>
+                            <h2 class="text-lg font-display font-bold text-white tracking-wider">CLIENTES CONFIRMADOS</h2>
+                            <p class="text-sm text-gray-500">Listado de clientes con reservas confirmadas o completadas.</p>
+                        </div>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left text-sm text-gray-400">
+                            <thead class="text-xs uppercase bg-white/5 text-gray-500 font-semibold tracking-widest">
+                                <tr>
+                                    <th scope="col" class="px-6 py-4">Cliente</th>
+                                    <th scope="col" class="px-6 py-4">Teléfono</th>
+                                    <th scope="col" class="px-6 py-4">Última Visita / Próxima</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-white/5">
+                                <tr class="hover:bg-white/[0.02] transition-colors group">
+                                    <td class="px-6 py-4 font-medium text-white">David Ibáñez</td>
+                                    <td class="px-6 py-4 text-gray-400">699 11 22 33</td>
+                                    <td class="px-6 py-4">Hoy a las 17:30 <span class="text-xs text-green-500 block">Confirmada</span></td>
+                                </tr>
+                                <tr class="hover:bg-white/[0.02] transition-colors group">
+                                    <td class="px-6 py-4 font-medium text-white">Pablo Torres</td>
+                                    <td class="px-6 py-4 text-gray-400">600 44 55 66</td>
+                                    <td class="px-6 py-4">Hoy a las 18:30 <span class="text-xs text-green-500 block">Confirmada</span></td>
+                                </tr>
+                                <tr class="hover:bg-white/[0.02] transition-colors group opacity-75">
+                                    <td class="px-6 py-4 font-medium text-white">Sergy</td>
+                                    <td class="px-6 py-4 text-gray-400">677 88 99 00</td>
+                                    <td class="px-6 py-4">Hoy a las 13:30 <span class="text-xs text-gray-500 block">Completado</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Calendario Content -->
+        <div id="calendario-content" class="flex-1 overflow-y-auto p-8 relative z-0 hidden">
+            <div class="max-w-6xl mx-auto space-y-8">
+                <div class="glass-panel border border-white/10 flex flex-col">
+                    <div class="p-6 border-b border-white/5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                        <div>
+                            <h2 class="text-lg font-display font-bold text-white tracking-wider">CALENDARIO (HOY)</h2>
+                            <p class="text-sm text-gray-500">Citas confirmadas ordenadas por hora.</p>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="relative border-l border-white/10 ml-4 space-y-8">
+                            
+                            <div class="relative pl-8">
+                                <span class="absolute -left-2 top-1 w-4 h-4 rounded-full bg-white/20 border-4 border-[#050505]"></span>
+                                <div class="text-sm text-gray-500 mb-1">13:30</div>
+                                <div class="glass-panel p-4 border border-white/5 rounded-sm opacity-50">
+                                    <div class="font-bold text-white">Sergy</div>
+                                    <div class="text-xs text-gray-400 mt-1">Corte Clásico</div>
+                                </div>
+                            </div>
+                            
+                            <div class="relative pl-8">
+                                <span class="absolute -left-2 top-1 w-4 h-4 rounded-full bg-green-500 border-4 border-[#050505]"></span>
+                                <div class="text-sm text-green-500 mb-1 font-bold">17:30</div>
+                                <div class="glass-panel p-4 border border-green-500/20 bg-green-500/5 rounded-sm">
+                                    <div class="font-bold text-white">David Ibáñez</div>
+                                    <div class="text-xs text-gray-400 mt-1">Corte + Barba (Combo VIP)</div>
+                                </div>
+                            </div>
+                            
+                            <div class="relative pl-8">
+                                <span class="absolute -left-2 top-1 w-4 h-4 rounded-full bg-green-500 border-4 border-[#050505]"></span>
+                                <div class="text-sm text-green-500 mb-1 font-bold">18:30</div>
+                                <div class="glass-panel p-4 border border-green-500/20 bg-green-500/5 rounded-sm">
+                                    <div class="font-bold text-white">Pablo Torres</div>
+                                    <div class="text-xs text-gray-400 mt-1">Arreglo de Barba</div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </main>
 
     <!-- Modal Nueva Cita -->
@@ -411,36 +528,41 @@
             });
 
 
-            // Navegación Sidebar
+                        // Navegación Sidebar
             const navLinks = document.querySelectorAll('aside nav a');
-            const mainContent = document.getElementById('main-content');
-            const comingSoon = document.getElementById('coming-soon');
+            const sections = {
+                'DASHBOARD': document.getElementById('main-content'),
+                'CITAS': document.getElementById('citas-content'),
+                'CLIENTES': document.getElementById('clientes-content'),
+                'CALENDARIO': document.getElementById('calendario-content')
+            };
             const headerTitle = document.querySelector('header h1');
             
             navLinks.forEach(link => {
                 link.addEventListener('click', (e) => {
                     e.preventDefault();
                     
-                    // Resetear estilos de todos los links
                     navLinks.forEach(l => {
                         l.className = 'flex items-center gap-3 px-4 py-3 text-gray-400 hover:text-white hover:bg-white/5 rounded-sm transition-colors';
                     });
-                    
-                    // Aplicar estilo activo al clickeado (sin perder el span rojo de notificaciones si lo tiene)
                     link.className = 'flex items-center gap-3 px-4 py-3 bg-white/10 text-white rounded-sm border border-white/10 transition-colors';
                     
-                    // Obtener nombre de la sección (el primer span)
                     const sectionName = link.querySelector('span').innerText.trim().toUpperCase();
                     
-                    if (sectionName === 'DASHBOARD' || sectionName === 'CITAS') {
-                        mainContent.classList.remove('hidden');
-                        comingSoon.classList.add('hidden');
-                        headerTitle.innerText = sectionName === 'DASHBOARD' ? 'RESUMEN DE HOY' : 'GESTIÓN DE CITAS';
-                    } else {
-                        mainContent.classList.add('hidden');
-                        comingSoon.classList.remove('hidden');
-                        headerTitle.innerText = sectionName;
+                    // Hide all
+                    Object.values(sections).forEach(sec => {
+                        if (sec) sec.classList.add('hidden');
+                    });
+                    
+                    // Show target
+                    if (sections[sectionName]) {
+                        sections[sectionName].classList.remove('hidden');
                     }
+                    
+                    if (sectionName === 'DASHBOARD') headerTitle.innerText = 'RESUMEN DE HOY';
+                    else if (sectionName === 'CITAS') headerTitle.innerText = 'CITAS PENDIENTES';
+                    else if (sectionName === 'CLIENTES') headerTitle.innerText = 'CLIENTES CONFIRMADOS';
+                    else if (sectionName === 'CALENDARIO') headerTitle.innerText = 'CALENDARIO (HOY)';
                 });
             });
         });
