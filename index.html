@@ -69,13 +69,24 @@
                 </div>
                 <!-- Mobile menu button -->
                 <div class="md:hidden flex items-center">
-                    <button class="text-gray-400 hover:text-white">
+                    <button id="mobile-menu-btn" class="text-gray-400 hover:text-white relative z-50">
                         <i class="fa-solid fa-bars text-2xl"></i>
                     </button>
                 </div>
             </div>
         </div>
     </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="fixed inset-0 z-40 glass-panel bg-brand-900/95 transform translate-x-full transition-transform duration-300 md:hidden flex flex-col justify-center items-center gap-8">
+        <a href="#servicios" class="mobile-link text-2xl font-display font-bold uppercase tracking-widest text-white hover:text-gray-400 transition-colors">Servicios</a>
+        <a href="#about" class="mobile-link text-2xl font-display font-bold uppercase tracking-widest text-white hover:text-gray-400 transition-colors">El Barbero</a>
+        <a href="#ubicacion" class="mobile-link text-2xl font-display font-bold uppercase tracking-widest text-white hover:text-gray-400 transition-colors">Ubicación</a>
+        <a href="#reserva" class="mobile-link mt-4 bg-white text-black px-8 py-4 text-xl font-semibold uppercase tracking-wider hover:bg-gray-200 transition-colors">
+            Reservar
+        </a>
+    </div>
+
 
     <!-- Hero Section -->
     <section class="relative h-screen flex items-center hero-pattern pt-20">
@@ -822,5 +833,35 @@
             });
         });
     </script>
+<script>
+// Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+        let isMenuOpen = false;
+
+        if (mobileMenuBtn) {
+            mobileMenuBtn.addEventListener('click', () => {
+                isMenuOpen = !isMenuOpen;
+                if (isMenuOpen) {
+                    mobileMenu.classList.remove('translate-x-full');
+                    mobileMenuBtn.innerHTML = '<i class="fa-solid fa-xmark text-2xl"></i>';
+                } else {
+                    mobileMenu.classList.add('translate-x-full');
+                    mobileMenuBtn.innerHTML = '<i class="fa-solid fa-bars text-2xl"></i>';
+                }
+            });
+        }
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                isMenuOpen = false;
+                mobileMenu.classList.add('translate-x-full');
+                if (mobileMenuBtn) {
+                    mobileMenuBtn.innerHTML = '<i class="fa-solid fa-bars text-2xl"></i>';
+                }
+            });
+        });
+</script>
 </body>
 </html>
